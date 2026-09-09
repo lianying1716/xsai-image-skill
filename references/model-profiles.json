@@ -1,0 +1,26 @@
+{
+  "gpt-image-2": {
+    "media_type": "image",
+    "evidence_level": "documented",
+    "prompt_strategy": "先写清画布用途、主体层级、布局和必须逐字呈现的文字；把文字放在引号中并指定语言，最后再写风格与光线。",
+    "strengths": ["复杂文字与信息图布局", "海报、菜单、UI 和品牌物料", "按区域描述的局部编辑"],
+    "weaknesses": ["不要把透明 PNG 当成已验证能力", "长段落文字仍需逐字检查"],
+    "supported_inputs": ["text", "reference_image", "mask"]
+  },
+  "gemini-3.1-flash-image": {
+    "media_type": "image",
+    "evidence_level": "documented",
+    "prompt_strategy": "先描述主体和真实场景，再给出构图、镜头、材质和光线；需要文字时使用短句并安排在明确区域，生成后必须核对字形。",
+    "strengths": ["自然场景和写实产品图", "多参考图的主体/风格融合", "快速探索多个构图方向"],
+    "weaknesses": ["长文字和精确排版不应作为首选", "复杂局部修改前先保留原图和版本"],
+    "supported_inputs": ["text", "reference_image", "mask"]
+  },
+  "grok-imagine-image-2.0": {
+    "media_type": "image",
+    "evidence_level": "observed",
+    "prompt_strategy": "用自然语言明确主体、动作、环境、镜头和成片气质；涉及文字时给出短而明确的逐字文本，并把可读性列为验收条件。",
+    "strengths": ["自然语言驱动的创意画面", "风格化场景和快速迭代", "短文字元素的画面探索"],
+    "weaknesses": ["星算侧实际可用参数以实时能力卡为准", "长文案、表格和精确品牌字标需要回读检查"],
+    "supported_inputs": ["text", "reference_image"]
+  }
+}

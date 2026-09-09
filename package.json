@@ -1,0 +1,10 @@
+{
+  "name": "@xingsuan/xsai-image-skill",
+  "version": "1.0.0",
+  "private": false,
+  "type": "module",
+  "description": "星算外部生图 Skill：设备授权、模型画像与图片生成/编辑。",
+  "engines": { "node": ">=18" },
+  "bin": { "xsai-image": "scripts/image.mjs" },
+  "xsai": { "runtimeVersion": "0.1.0", "repositorySlug": "lianying1716/xsai-image-skill" }
+}
