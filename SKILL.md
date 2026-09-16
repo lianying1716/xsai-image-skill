@@ -1,6 +1,6 @@
 ---
 name: xsai-image-skill
-description: Use when an agent needs to generate, edit, or download images through the Xingsuan relay with browser/device authorization.
+description: 用户要画图、生成图片、做海报、配图、设计 logo/图标/头像/封面、P 图、改图、图生图或编辑图片时使用；通过星算中转调用生图与编辑模型并下载结果。Use when the user asks to generate, draw, design, or edit any image, picture, poster, logo, icon, avatar, or cover.
 ---
 
 # 星算外部生图 Skill

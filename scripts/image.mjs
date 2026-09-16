@@ -12,7 +12,10 @@ const DEFAULT_AUTH_BASE_URL = process.env.XSAI_IMAGE_AUTH_BASE_URL || "https://x
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const PROFILE_PATH = path.join(ROOT, "references", "model-profiles.json");
 const DEFAULT_SCOPES = ["media.list_models", "media.read_capabilities"];
+// 该技能真正要用到的全部权限。auth login 不带 --scope 时按这个申请,避免
+// "登录成功但调用 403,还得再授权一次"的往返。
 const EXECUTION_SCOPES = ["media.generate", "media.edit", "media.jobs.read", "media.files.upload", "media.files.download"];
+const FULL_SCOPES = [...DEFAULT_SCOPES, ...EXECUTION_SCOPES];
 const runtime = createExternalSkillRuntime({
   clientId: CLIENT_ID,
   consumerClientId: CONSUMER_CLIENT_ID,
@@ -20,7 +23,7 @@ const runtime = createExternalSkillRuntime({
   defaultAuthBaseUrl: DEFAULT_AUTH_BASE_URL,
   stateEnv: "XSAI_IMAGE_STATE_DIR",
   stateName: "xsai",
-  defaultScopes: DEFAULT_SCOPES
+  defaultScopes: FULL_SCOPES
 });
 const {
   readState,
@@ -82,7 +85,7 @@ function buildImageRequest(args, { profiles = [] } = {}) {
 
 function normalizeImageError(error) {
   const code = String(error?.code || "image_request_failed").replace(/[^a-z0-9_\-]/gi, "_").slice(0, 64);
-  const known = new Set(["auth_required", "auth_recovery_required", "auth_busy", "authorization_pending", "invalid_request", "invalid_scope", "unsupported_option", "model_unavailable", "not_found", "rate_limited", "timeout"]);
+  const known = new Set(["auth_required", "auth_recovery_required", "auth_busy", "authorization_pending", "invalid_request", "invalid_scope", "scope_required", "unsupported_option", "model_unavailable", "not_found", "rate_limited", "timeout"]);
   const message = known.has(code) ? String(error.message || "请求失败") : "图片服务暂时不可用，请稍后重试。";
   return { code, message };
 }
