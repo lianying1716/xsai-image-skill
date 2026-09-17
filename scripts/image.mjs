@@ -21,6 +21,9 @@ const runtime = createExternalSkillRuntime({
   consumerClientId: CONSUMER_CLIENT_ID,
   defaultBaseUrl: DEFAULT_BASE_URL,
   defaultAuthBaseUrl: DEFAULT_AUTH_BASE_URL,
+  // 安装器写下的「客户端当时连的那对地址」就在技能根目录里。授权状态目录按这对
+  // 地址命名，缺了它，开发实例里客户端写进的授权技能永远找不到。
+  configDir: ROOT,
   stateEnv: "XSAI_IMAGE_STATE_DIR",
   stateName: "xsai",
   defaultScopes: FULL_SCOPES
